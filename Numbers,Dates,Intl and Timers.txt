@@ -1,0 +1,152 @@
+// 1. Numbers
+// JavaScript provides various methods to work with numbers, including basic arithmetic operations, conversion methods, and built-in objects like Math.
+//Basic arithmetic
+let a = 10;
+let b = 5;
+
+console.log(a + b);  // Addition: 15
+console.log(a - b);  // Subtraction: 5
+console.log(a * b);  // Multiplication: 50
+console.log(a / b);  // Division: 2
+console.log(a % b);  // Modulus: 0
+// Example: Number Methods
+
+let num = 123.456;
+
+// Convert to integer
+console.log(Math.floor(num)); // 123
+console.log(Math.ceil(num));  // 124
+console.log(Math.round(num)); // 123
+
+// Convert string to number
+let str = "456";
+console.log(Number(str));     // 456
+console.log(parseInt(str));   // 456
+console.log(parseFloat(str)); // 456
+
+// Check if a value is a number
+console.log(isNaN("abc"));    // true
+console.log(isNaN(123));      // false
+
+// 2. Dates
+// JavaScript uses the Date object to work with dates and times. You can create a new Date object, and use various methods to get and set different parts of the date.
+
+// Example: Creating and Formatting Dates
+// Current date and time
+let now = new Date();
+console.log(now);
+
+// Specific date
+let specificDate = new Date(2023, 6, 7); // Year, Month (0-based), Day
+console.log(specificDate);
+
+// Get parts of the date
+console.log(now.getFullYear()); // Current year
+console.log(now.getMonth());    // Current month (0-11)
+console.log(now.getDate());     // Current day of the month
+console.log(now.getHours());    // Current hour
+console.log(now.getMinutes());  // Current minute
+console.log(now.getSeconds());  // Current second
+
+// Set parts of the date
+now.setFullYear(2025);
+console.log(now);
+
+// 3. Internationalization (Intl)
+// The Intl object provides language-sensitive string comparison, number formatting, and date and time formatting.
+
+// Example: Number Formatting
+let number = 1234567.89;
+
+let usFormatter = new Intl.NumberFormat('en-US');
+console.log(usFormatter.format(number)); // "1,234,567.89"
+
+let deFormatter = new Intl.NumberFormat('de-DE');
+console.log(deFormatter.format(number)); // "1.234.567,89"
+
+let currencyFormatter = new Intl.NumberFormat('en-IN', {
+    style: 'currency',
+    currency: 'INR'
+});
+console.log(currencyFormatter.format(number)); // "$1,234,567.89"
+
+// Example: Date and Time Formatting
+let date = new Date();
+
+let usDateFormatter = new Intl.DateTimeFormat('en-US');
+console.log(usDateFormatter.format(date)); // "7/7/2024" (format may vary)
+
+let deDateFormatter = new Intl.DateTimeFormat('de-DE');
+console.log(deDateFormatter.format(date)); // "07.07.2024" (format may vary)
+
+let longDateFormatter = new Intl.DateTimeFormat('en-US', {
+    weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+});
+console.log(longDateFormatter.format(date)); // "Sunday, July 7, 2024" (format may vary)
+// 4. Timers
+// JavaScript provides functions to execute code at specific times or intervals: setTimeout, setInterval, and their corresponding clear functions.
+//setTimeout
+// Execute a function after a delay
+setTimeout(() => {
+    console.log("This message appears after 2 seconds");
+}, 2000);
+
+// Example: setInterval
+// Execute a function repeatedly at specified intervals
+let count = 0;
+let intervalId = setInterval(() => {
+    count++;
+    console.log(`Interval count: ${count}`);
+    if (count === 5) {
+        clearInterval(intervalId); // Stop the interval after 5 iterations
+    }
+}, 1000);
+
+// Execute a function repeatedly at specified intervals
+let countt = 0;
+let intervallId = setInterval(() => {
+    countt++;
+    console.log(`Interval count: ${countt}`);
+    if (countt === 5) {
+        clearInterval(intervallId); // Stop the interval after 5 iterations
+    }
+}, 1000);
+
+// Example: clearTimeout
+let timeoutId = setTimeout(() => {
+    console.log("This will not run");
+}, 5000);
+
+// Clear the timeout before it executes
+clearTimeout(timeoutId);
+
+// Additional Examples:
+// Example: Percentage Formatting
+// You can also use Intl.NumberFormat to format percentages.
+let percentFormatter = new Intl.NumberFormat('en-IN', {
+    style: 'percent'
+});
+
+let percentage = 0.5678;
+console.log(percentFormatter.format(percentage)); // "56%"
+
+// Example: Compact Notation
+// For large numbers, you might want to use a compact notation.
+
+let compactNumberFormatter = new Intl.NumberFormat('en-IN', {
+    notation: 'compact'
+});
+
+let largeNumber = 1234567;
+console.log(compactNumberFormatter.format(largeNumber)); // "12L" (Lakh)
+
+// Example: Customizing Minimum and Maximum Fraction Digits
+// You can customize the number of fraction digits.
+let fractionFormatter = new Intl.NumberFormat('en-IN', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+});
+
+let decimalNumber = 1234.5;
+console.log(fractionFormatter.format(decimalNumber)); // "1,234.50"
+

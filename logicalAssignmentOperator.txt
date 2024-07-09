@@ -1,0 +1,136 @@
+const rest1 = {
+    name: 'Capri',
+    numGuests:20,
+};
+
+const rest2 = {
+    name: 'Plazza',
+    owner: 'giovanna',
+};
+
+rest1.numGuests ||=10; // 20 -->first true value
+rest2.numGuests ||=10;// 10 --> last fals value
+//----------------------------------------------------------------------------------------------------
+
+
+const rest3 = {
+    name: 'Capri',
+    numGuests:0,
+};
+
+const rest4 = {
+    name: 'Plazza',
+    owner: 'giovanna',
+};
+
+rest3.numGuests ||=10; // 10 -->last false value
+rest4.numGuests ||=10;// 10 --> last fals value
+//-----------------------------------------------------------------------------------------------------
+const rest5 = {
+    name: 'Capri',
+    numGuests:0,
+};
+
+const rest6 = {
+    name: 'Plazza',
+    owner: 'giovanna',
+};
+
+rest5.numGuests ??=10; // 0 since zero is a true value in nullish coalscing
+rest6.numGuests ??=10; // 10 since an undefined so prints 10
+
+//------------------------------------------------------------------------------------------------------------
+const rest7 = {
+    name: 'Capri',
+    numGuests:0,
+};
+
+const rest8 = {
+    name: 'Plazza',
+    owner: 'giovanna',
+};
+rest7.owner = rest7.owner && '<anonymous>'; // undefined 
+rest8.owner = rest8.owner && '<anonymous>'; // anonymous since it prnts a false value
+//-----------------------------------------------------------------------------------------------------------------
+//code challenge 1
+
+const game = {
+    team1: 'Bayern Munich',
+    team2: 'Borrussia Dortmund',
+    players: [
+      [
+        'Neuer',
+        'Pavard',
+        'Martinez',
+        'Alaba',
+        'Davies',
+        'Kimmich',
+        'Goretzka',
+        'Coman',
+        'Muller',
+        'Gnarby',
+        'Lewandowski',
+      ],
+      [
+        'Burki',
+        'Schulz',
+        'Hummels',
+        'Akanji',
+        'Hakimi',
+        'Weigl',
+        'Witsel',
+        'Hazard',
+        'Brandt',
+        'Sancho',
+        'Gotze',
+      ],
+    ],
+    score: '4:0',
+    scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
+    date: 'Nov 9th, 2037',
+    odds: {
+      team1: 1.33,
+      x: 3.25,
+      team2: 6.5,
+    },
+  };
+
+  //1. 
+  const [players1,players2] = game.players;
+  console.log(players1,players2);
+
+  //2.
+
+  const [gk1,...fp1] = players1;
+  console.log(gk1);
+  console.log(fp1);
+
+  const [gk2,...fp2]= players2;
+  console.log(gk2);
+  console.log(fp2);
+
+  //3.
+
+  const allPlayers = [...players1,...players2];
+  console.log(allPlayers);
+
+  //4.
+
+  const players1Final = [...players1,'thiago','countinho','perisic'];
+  console.log(players1Final); 
+
+  //5.
+  const {odds:{team1,x: Draw , team2}}=game;
+  console.log(team1,Draw,team2);
+
+  //6
+
+  const printGoals = function(...players){
+    console.log(players);
+    console.log(`${players.length} goals were scored`);
+  }
+  printGoals(...game.scored);
+
+  //7
+
+  team1 < team2 && console.log("Tema1 likely to win");

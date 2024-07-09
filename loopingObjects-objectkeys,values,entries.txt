@@ -1,0 +1,103 @@
+const restaurant={
+    starter: ['Focaccio','Brushetta','Garlic Bread','capresse salad'],
+    main: ['Pizza','pasta','risotto'],
+    WorkingDaysandTime: {
+        thu:
+        {
+            open:11,
+            close:23,
+
+        },
+        fri:{
+            open:11,
+            close:23,
+        },
+        sat:{
+            open:11,
+            close:24,
+        },
+    },
+    order: function(starterIndex,mainIndex){
+        return[this.starter[starterIndex],this.main[mainIndex]];
+
+    }
+};
+
+for(const day of Object.keys(restaurant.WorkingDaysandTime)){ // we use from restaurant class so classname.propertyname otherwise if its the only class just classname
+    console.log(day);
+}
+const properties = Object.keys(restaurant.WorkingDaysandTime);
+console.log(properties);
+
+//  ['thu', 'fri', 'sat']
+const values = Object.values(restaurant.WorkingDaysandTime);
+console.log(values);
+//(3) [{…}, {…}, {…}]
+// 0
+// : 
+// {open: 11, close: 23}
+// 1
+// : 
+// {open: 11, close: 23}
+// 2
+// : 
+// {open: 11, close: 24}
+// length
+// : 
+// 3
+
+let openStr = `we are open for ${properties.length} days:`;
+for(const dayss of properties){
+    openStr += `${dayss} `;
+}
+console.log(openStr);//we are open for 3 days:thu fri sat
+
+const entries = Object.entries(restaurant.WorkingDaysandTime);
+ for (const x of entries)
+ console.log(x);
+// ['thu', {…}]0: "thu"1: {open: 11, close: 23}length: 2[[Prototype]]: Array(0)
+// (2) ['fri', {…}]0: "fri"1: {open: 11, close: 23}length: 2[[Prototype]]: Array(0)
+//(2) ['sat', {…}]0: "sat"1: {open: 11, close: 24}length: 2[[Prototype]]: Array(0)
+
+
+
+
+//  const restaurant = {
+//     starter: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+//     main: ['Pizza', 'Pasta', 'Risotto'],
+//     WorkingDaysandTime: {
+//         thu: {
+//             open: 11,
+//             close: 23,
+//         },
+//         fri: {
+//             open: 11,
+//             close: 23,
+//         },
+//         sat: {
+//             open: 11,
+//             close: 24,
+//         },
+//     },
+//     order: function(starterIndex, mainIndex) {
+//         return [this.starter[starterIndex], this.main[mainIndex]];
+//     }
+// };
+
+// // Object.keys
+// const workingDaysKeys = Object.keys(restaurant.WorkingDaysandTime);
+// console.log(workingDaysKeys); // Output: ['thu', 'fri', 'sat']
+
+// // Object.values
+// const workingDaysValues = Object.values(restaurant.WorkingDaysandTime);
+// console.log(workingDaysValues); // Output: [{open: 11, close: 23}, {open: 11, close: 23}, {open: 11, close: 24}]
+
+// // Object.entries
+// const workingDaysEntries = Object.entries(restaurant.WorkingDaysandTime);
+// console.log(workingDaysEntries); 
+// // Output: [['thu', {open: 11, close: 23}], ['fri', {open: 11, close: 23}], ['sat', {open: 11, close: 24}]]
+// In summary:
+
+// Object.keys gives you an array of the property names.
+// Object.values gives you an array of the property values.
+// Object.entries gives you an array of key-value pairs.

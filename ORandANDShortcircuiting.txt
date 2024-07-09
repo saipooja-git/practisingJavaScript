@@ -1,0 +1,19 @@
+console.log(3 || 'Jonas') // 3
+console.log('' || 'jonas'); // jonas
+console.log(undefined || null); //null
+console.log(true || 0); //true
+console.log(undefined||0||''||'hello'||23||null); // hello
+restaurant.numGuests = 0;
+const guest1= restaurant.numGuests || 10;
+console.log(guest1); //10---> if numguests is 0 then output is printed as 10. or else if numguests assigned as 22 then 22 only prints and not 10.
+since 0 is a falsy value
+console.log(0&&'jonas');// 0
+console.log(7 && 'jonas'); // jonas
+console.log('hello' && 23 && null && 'jonas'); // null -->bcz,hello is truthy value then 23 is also truthy value then null is a falsy 
+value so it doesnot go further and prints the same value as null.
+
+So the OR operator will return the first truthy value
+of all the operands,
+or simply the last value if all of them are falsy.
+the AND operator will return the first falsy value
+or the last value if all of them are truthy.

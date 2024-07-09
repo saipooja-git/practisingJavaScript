@@ -1,0 +1,63 @@
+const restaurant={
+    starter: ['Focaccio','Brushetta','Garlic Bread','capresse salad'],
+    main: ['Pizza','pasta','risotto'],
+    WorkingDaysandTime: {
+        thu:
+        {
+            open:11,
+            close:23,
+
+        },
+        fri:{
+            open:11,
+            close:23,
+        },
+        sat:{
+            open:11,
+            close:24,
+        },
+    },
+    order: function(starterIndex,mainIndex){
+        return[this.starter[starterIndex],this.main[mainIndex]];
+
+    }
+};
+
+//now since WorkingDaysandTime is within restaurant, so after Es6 the literals usage was Changged,
+ //it means u can place it outside of restaurant object and can be used.
+// also you can declare weekdays and use them in workinghours
+// example
+const weekDays = ['mon','tue','wed','thu','fri','sat'];
+const WorkingHours = {
+    [weekDays[3]]:
+    {
+        open:11,
+        close:23,
+
+    },
+    [weekDays[4]]:{
+        open:11,
+        close:23,
+    },
+    sat:{
+        open:11,
+        close:24,
+    },
+};
+const restaurant1={
+    starter: ['Focaccio','Brushetta','Garlic Bread','capresse salad'],
+    main: ['Pizza','pasta','risotto'],
+    // WorkingHours:WorkingHours instead of this after Es6 enhanced object literals like below only you can enter property name.
+    WorkingHours,
+    // order: function(starterIndex,mainIndex){
+    //     return[this.starter[starterIndex],this.main[mainIndex]];
+
+    // }
+    order(starterIndex,mainIndex){
+        return[this.starter[starterIndex],this.main[mainIndex]];
+
+    }
+};// now in console if you enter restaurant1 the workinghours are also visible
+
+//also for function method, no need to mention as --> methodname: function(){},
+// simply you can mention as methodname(){}

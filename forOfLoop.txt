@@ -1,0 +1,21 @@
+const restaurant={
+    starter: ['Focaccio','Brushetta','Garlic Bread','capresse salad'],
+    main: ['Pizza','pasta','risotto'],
+    order: function(starterIndex,mainIndex){
+        return[this.starter[starterIndex],this.main[mainIndex]];
+
+    }
+};
+
+const menu = [...restaurant.main,...restaurant.starter];
+
+for(const item of menu)
+    console.log(item);
+for(const item of menu.entries())
+    {
+        console.log(`${item[0]+1}:${item[1]}`);
+    }
+for(const [i, el] of menu.entries())
+        {
+            console.log(`${i+1}:${[el]}`);
+        }

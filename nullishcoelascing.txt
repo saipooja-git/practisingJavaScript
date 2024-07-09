@@ -1,0 +1,11 @@
+?? --> this is the symbol for nullishcoalscing 
+nullish values are undefined and null, means 0 and '' are considered to be true.
+for example,
+restaurant.numGuests = 0;
+const guests = restaurant.numGuests || 10; // output is 10
+const guests2 = restaurant.numGuests ?? 10; // 0  -->here 0 is true in case of nullish so it printed true value as 0.
+
+if we donst assign restaurant.numGuests to anything then,
+const guests2 = restaurant.numGuests ?? 10; // 10 ---> here restaurant.numGuests is undefined,
+so nullish considers it as false so it printed 10.
+
