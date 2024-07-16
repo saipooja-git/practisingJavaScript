@@ -1,0 +1,126 @@
+Event propagation is a fundamental concept in web development that describes how events flow through the Document Object Model (DOM) tree. When an event occurs, such as a click on an element, it doesn't just trigger an event listener on that element. Instead, it goes through a process called event propagation, which consists of three phases: capturing, target, and bubbling.
+
+Three Phases of Event Propagation
+Capturing Phase (Event Capturing)
+
+The event starts from the top of the DOM tree (the window or document object) and travels down to the target element.
+This phase is rarely used, but it can be useful in some advanced scenarios.
+Target Phase
+
+The event reaches the target element where the event occurred.
+Any event listeners on the target element are executed.
+Bubbling Phase (Event Bubbling)
+
+After reaching the target element, the event bubbles up from the target element back up to the root of the DOM tree (the document or window object).
+Event listeners on ancestor elements are executed during this phase.
+Example of Event Propagation
+Consider the following HTML structure:
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Propagation</title>
+</head>
+<body>
+    <div id="parent">
+        <button id="child">Click Me!</button>
+    </div>
+    
+    <script>
+        // Add event listener to the parent element
+        document.getElementById('parent').addEventListener('click', function() {
+            console.log('Parent clicked');
+        });
+
+        // Add event listener to the child element
+        document.getElementById('child').addEventListener('click', function(event) {
+            console.log('Child clicked');
+        });
+    </script>
+</body>
+</html>
+In this example:
+
+A click event listener is added to both the parent <div> and the child <button>.
+When the button is clicked, the following happens due to event propagation:
+The event starts at the document (capturing phase).
+The event travels down to the parent <div>.
+The event reaches the child <button> (target phase).
+The click event listener on the child button is executed, logging "Child clicked".
+The event then bubbles up to the parent <div>, executing its event listener and logging "Parent clicked".
+Controlling Event Propagation
+Sometimes, you might want to stop the event from propagating further. This can be done using methods like stopPropagation() and stopImmediatePropagation().
+
+stopPropagation(): Stops the event from bubbling up or capturing further.
+stopImmediatePropagation(): Stops the event from propagating and prevents other event listeners of the same event from being called.
+Example: Stopping Propagation
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stop Propagation</title>
+</head>
+<body>
+    <div id="parent">
+        <button id="child">Click Me!</button>
+    </div>
+    
+    <script>
+        // Add event listener to the parent element
+        document.getElementById('parent').addEventListener('click', function() {
+            console.log('Parent clicked');
+        });
+
+        // Add event listener to the child element
+        document.getElementById('child').addEventListener('click', function(event) {
+            console.log('Child clicked');
+            event.stopPropagation(); // Stop the event from bubbling up
+        });
+    </script>
+</body>
+</html>
+In this example:
+
+When the button is clicked, "Child clicked" is logged.
+The stopPropagation() method is called, preventing the event from bubbling up to the parent <div>.
+As a result, "Parent clicked" is not logged.
+Event Propagation in the Capturing Phase
+To listen for events during the capturing phase, you can pass a third argument to addEventListener as true:
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Capturing</title>
+</head>
+<body>
+    <div id="parent">
+        <button id="child">Click Me!</button>
+    </div>
+    
+    <script>
+        // Add event listener to the parent element in capturing phase
+        document.getElementById('parent').addEventListener('click', function() {
+            console.log('Parent clicked (capturing)');
+        }, true);
+
+        // Add event listener to the child element
+        document.getElementById('child').addEventListener('click', function(event) {
+            console.log('Child clicked');
+        });
+    </script>
+</body>
+</html>
+In this example:
+
+The event listener on the parent <div> is set to capture events (true as the third argument).
+When the button is clicked, "Parent clicked (capturing)" is logged first (capturing phase), followed by "Child clicked" (target phase).
+Summary
+Event propagation in the DOM involves the capturing phase, target phase, and bubbling phase. Understanding these phases and how to control event propagation with methods like stopPropagation() and stopImmediatePropagation() is essential for managing complex interactions in web applications.

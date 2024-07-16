@@ -1,0 +1,58 @@
+Events
+Events are actions or occurrences recognized by software that may be handled by the software. In the context of web development, events are usually associated with the Document Object Model (DOM) and can be tied to elements like buttons, forms, and windows. When an event occurs, it can trigger a function or a piece of code to execute, known as an event handler.
+
+Types of Events
+Events can be broadly categorized based on the type of interaction or action they represent. Below are some common types of events in web development:
+
+Mouse Events
+
+click: Triggered when a mouse button is clicked on an element.
+dblclick: Triggered when a mouse button is double-clicked on an element.
+mousedown: Triggered when a mouse button is pressed down on an element.
+mouseup: Triggered when a mouse button is released over an element.
+mouseover: Triggered when the mouse pointer moves over an element.
+mouseout: Triggered when the mouse pointer moves out of an element.
+mousemove: Triggered when the mouse pointer is moved while over an element.
+mouseenter: Triggered when the mouse pointer moves into an element.
+mouseleave: Triggered when the mouse pointer moves out of an element.
+Keyboard Events
+
+keydown: Triggered when a key is pressed down.
+keyup: Triggered when a key is released.
+keypress: Triggered when a key is pressed down and released (deprecated, prefer keydown and keyup).
+Form Events
+
+submit: Triggered when a form is submitted.
+reset: Triggered when a form is reset.
+focus: Triggered when an element (e.g., input field) gains focus.
+blur: Triggered when an element loses focus.
+change: Triggered when the value of an element (e.g., input, select) is changed.
+input: Triggered when the value of an <input>, <textarea>, or <select> element is changed.
+Window Events
+
+load: Triggered when the whole page, including all dependent resources (like images), has finished loading.
+unload: Triggered when the document or a child resource is being unloaded.
+resize: Triggered when the browser window is resized.
+scroll: Triggered when the document is scrolled.
+Touch Events
+
+touchstart: Triggered when a touch point is placed on the touch surface.
+touchend: Triggered when a touch point is removed from the touch surface.
+touchmove: Triggered when a touch point is moved along the touch surface.
+touchcancel: Triggered when a touch point has been disrupted in some way.
+Drag and Drop Events
+
+drag: Triggered continuously as an element or text selection is being dragged.
+dragstart: Triggered when the user starts dragging an element or text selection.
+dragend: Triggered when a drag operation is complete.
+dragenter: Triggered when a dragged element or text selection enters a valid drop target.
+dragover: Triggered continuously as the mouse is moved over a valid drop target while dragging.
+dragleave: Triggered when a dragged element or text selection leaves a valid drop target.
+drop: Triggered when an element or text selection is dropped on a valid drop target.
+Media Events
+
+play: Triggered when the media begins to play.
+pause: Triggered when the media is paused.
+ended: Triggered when the media has reached the end.
+volumechange: Triggered when the volume of the media changes.
+timeupdate: Triggered when the current playback position has changed.

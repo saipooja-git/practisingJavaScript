@@ -1,0 +1,88 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passing Arguments to Event Handlers</title>
+</head>
+<body>
+    <button id="myButton">Click me</button>
+    <script>
+    const myButton = document.getElementById('myButton');
+
+    function handleClick(event, arg1, arg2) {
+        console.log('Event:', event);
+        console.log('Argument 1:', arg1);
+        console.log('Argument 2:', arg2);
+    }
+
+    // Using an anonymous function to pass additional arguments
+    myButton.addEventListener('click', function(event) {
+        handleClick(event, 'Hello', 'World');
+    });
+    </script>
+</body>
+</html>
+ -->
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passing Arguments to Event Handlers</title>
+</head>
+<body>
+<button id="btn1">Slow Animation</button>
+<button id="btn2">Fast Animation</button>
+<script>
+const slowConfig = { duration: 1000 };
+const fastConfig = { duration: 200 };
+
+document.getElementById('btn1').addEventListener('click', function(event) {
+    handleAnimation(event, slowConfig);
+});
+
+document.getElementById('btn2').addEventListener('click', function(event) {
+    handleAnimation(event, fastConfig);
+});
+
+function handleAnimation(event, config) {
+    console.log('Event:', event);
+    console.log('Animation Duration:', config.duration);
+}
+</script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passing Arguments to Event Handlers</title>
+</head>
+<body>
+<form id="myForm">
+    <input type="text" id="username" data-validation="required" placeholder="Username">
+    <input type="email" id="email" data-validation="email" placeholder="Email">
+    <button type="submit">Submit</button>
+</form>
+<script>
+const form = document.getElementById('myForm');
+
+form.addEventListener('submit', function(event) {
+    event.preventDefault();
+    const inputs = form.querySelectorAll('input');
+    inputs.forEach(input => validateInput(input, input.dataset.validation));
+});
+
+function validateInput(input, validationType) {
+    console.log('Validating:', input.id, 'with validation type:', validationType);
+    // Add validation logic here
+}
+</script>
+</body>
+</html>
