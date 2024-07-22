@@ -1,0 +1,246 @@
+Promises: An object that is used as placeholder for the future result of an asynchronous operation.
+simply a promise is a container/placeholder for a future value.
+And a perfect example for a future value is response coming from an AJAX call.
+one more example is that 
+1. i buy a lottery ticket(promise) right now
+2. lottery draw happens asynchronously
+3. if correct outcome, i recieve money,because it was promised.
+advantage of using promise
+1. we no longer need to rely on events and callback functions to handle asynchronous results,events and callback functions sometimes 
+cause unpredictable results.
+2. Instead of nesting callbacks we can chain promises for a sequence of asynchronous 
+operations: eascaping callback hell
+
+promises are es6 feature, they became available in js in 2015.
+
+Now, since promises work with asynchronous operations,they are time sensitive.
+So they change over time.
+And so promises can be in different states and this is what they call the cycle of a promise.
+So in the very beginning,we say that a promise is pending.
+And so this is before any value resulting from the asynchronous task is available.
+Now, during this time, the asynchronous task is still doing its work in the background.
+Then when the task finally finishes,we say that the promise is settled and there are two different types of settled promises and
+that's fulfilled promises and rejected promises.
+So a fulfilled promise is a promise that has
+successfully resulted in a value just as we expect it.
+For example, when we use the promise to fetch data
+from an API,a fulfilled promise successfully gets that data,and it's now available to being used.
+On the other hand,a rejected promise means that there has been an error during the asynchronous task.
+And the example of fetching data from an API,an error would be for example,
+when the user is offline and can't connect
+to the API server.
+
+Now going back to the analogy of our lottery ticket,
+
+the lottery draw is basically the asynchronous task,
+
+which determines the result.
+
+Then once the result is available,
+
+the ticket would be settled.
+
+Then if we guessed the correct outcome,
+
+the lottery ticket will be fulfilled
+
+and we get our money.
+
+However, if we guessed wrong,
+
+then the ticket basically gets rejected.
+
+And all we did was waste our money.
+
+Now these different states
+
+are very important to understand because
+
+when we use promises in our code,
+
+we will be able to handle these different states in
+
+order to do something as a result
+
+of either a successful promise or a rejected one.
+
+Another important thing about promises is that
+
+a promise is only settled once.
+
+And so from there,
+
+the state will remain unchanged forever.
+
+So the promise was either fulfilled or rejected,
+
+but it's impossible to change that state.
+
+Now, these different states that I showed you here
+
+are relevant and useful when we use a promise
+
+to get a result,
+
+which is called, to consume a promise.
+
+So we consume a promise
+
+when we already have a promise, for example,
+
+the promise that was returned
+
+from the fetch function,
+
+right at the beginning of this video, remember.
+
+But in order for a promise to exist in the first place,
+
+it must first be built.
+
+So it must be created in the case of the fetch API,
+
+it's the fetch function that builds the promise
+
+and returns it for us to consume.
+
+So in this case,
+
+we don't have to build the promise ourselves in
+
+order to consume it.
+
+Now, most of the time we will actually
+
+just consume promises,
+
+which is also the easier and more useful part.
+
+And so that's what we will do
+
+in the next couple of videos.
+
+But sometimes we also need to build a promise and
+
+to not just consume it.
+
+And of course,
+
+we will also learn how to do
+
+that a bit later.
+
+Alright.
+
+And so now let's actually start using promises
+
+in the next video.
+------------------------------------------------------------------------------------------------------
+const getCountryData = function(country){
+    fetch('https://restcountries.eu/rest/v2/name/${country}`).then(function(response){
+        consoe.log(response);
+    });
+};
+getCountryData('portugal');
+
+------------------------------------------------------------------------------------------------------
+
+so to explain this block of code here(like we learn how to consume a promise),
+so we consume a promise that was returned by the fetch function.
+as we already know calling a fetch function like this will already return a promise which will be in pending state because the asynchronous function is still running in  the background.
+
+fetch('https://restcountries.eu/rest/v2/name/${country}`);
+
+now ofcourse promise will be settled,either in fullfilled or rejected state, but for now lets assume success state
+ it means the promise will be fullfilled and that we have a value available to work with.
+ as so to handle this state, we can use then method,that is available on promises.
+
+fetch('https://restcountries.eu/rest/v2/name/${country}`).then()
+
+and into the then method we need to pass a callback function that we want to be executed as soon as promise is actually fullfiled.
+----------------------------------------------------------------------------------------------------
+const getCountryData = function(country){
+    fetch('https://restcountries.eu/rest/v2/name/${country}`).then(function(response){
+console.log(response);
+    });
+
+};
+getCountryData('portugal');
+
+-------------------------------------------------------------------------------------------------------------
+
+so a function and again a function inside then(),will actually recieve one argument once its called by js and that argument is the resulting value of fullfilled promise.
+
+So let me call it response here
+
+because this is the response of an AJAX call in this case.
+
+All right, and that's it.
+we would get an output here and its object type is also response, and the body is in ReadableStream>we can't actually look at the data yet, so in order to see that data we need to call the json method on the response.
+json is a method that is available on all responses of the fetch method.
+----------------------------------------------------
+const getCountryData = function(country){
+    fetch('https://restcountries.eu/rest/v2/name/${country}`).then(function(response){
+console.log(response);
+response.json(); // again a new promise
+    });
+
+};
+
+getCountryData('portugal');
+
+------------------------------------------------
+response .json()----> so this method is available on all the objects that is coming from the fetch function.
+so therefore it does have the json method attached to it.
+now the problem here is the that this json function itself, is an asynchronous function.
+and so that means,it will also return a new promise.
+
+Okay, because remember this here will be a new promise.
+Okay, and so now we need to handle that promise as well.
+All right, and so the way we do that is to then call another then right here.
+So we need another callback function,this time let's call it data.
+And for now let's log it here to the console and let's give it a save, just to see if it worked.
+And yeah, here it is.
+So here we are back to having the same data
+that we already had before,
+but this time using a promise or actually two promises.
+the below is code>
+
+const renderCountry = function (data, className = '') {
+      const html = `
+        <article class="country ${className}">
+          <img class="country__img" src="${data.flags.svg}" />
+          <div class="country__data">
+            <h3 class="country__name">${data.name.common}</h3>
+            <h4 class="country__region">${data.region}</h4>
+            <p class="country__row"><span>👫</span>${(
+              +data.population / 1000000
+            ).toFixed(1)} people</p>
+            <p class="country__row"><span>🗣️</span>${Object.values(data.languages).join(', ')}</p>
+            <p class="country__row"><span>💰</span>${Object.values(data.currencies)[0].name}</p>
+          </div>
+        </article>
+      `;
+      countriesContainer.insertAdjacentHTML('beforeend', html);
+      countriesContainer.style.opacity = 1;
+    };
+
+const getCountryData = function(country){
+    fetch('https://restcountries.eu/rest/v2/name/${country}`).then(function(response){
+console.log(response);
+    }).then(function(data){
+        console.log(data);
+        renderCountry(data[0]);
+    });
+
+};
+getCountryData('portugal');
+
+---------------------------------------------------
+fetch function > returned a promise >and we handled that using then() > but then to actually read this data from response, we need to call json method on that response object> now this will also return a promise>again we handled it using then()>nd so then again we have a callback
+
+and this time, we get access to the data
+
+because the resolved value of this promise here
+
+is going to be the data itself.

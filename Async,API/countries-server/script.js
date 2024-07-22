@@ -142,7 +142,7 @@
       console.log("Button clicked");
     //   getCountryAndNeighbour('portugal');
     //   getCountryAndNeighbour('usa');
-      getCountryAndNeighbour('Germany'); // Replace 'portugal' with any country you want to fetch
+      getCountryAndNeighbour('usa'); // Replace 'portugal' with any country you want to fetch
     });
   });
   
